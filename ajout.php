@@ -30,8 +30,8 @@ if($idcom=connexpdo("dating", "myparams"));
   </fieldset>
   <!-- 2ieme groupe -->
   <fieldset>
-  <legend>Vos pratiques sportives</legend>
-  <table>
+    <legend>Vos pratiques sportives</legend>
+    <table>
     <tbody>
       <!-- selection des sports -->
       <tr>
@@ -75,11 +75,20 @@ if($idcom=connexpdo("dating", "myparams"));
         <input type="reset" name="efface" value="Effacer" />
       </td>
     </tbody>
-  </table>
+    </table>
   </fieldset>
 </form>
-
 <?php 
+// inserer des data dans la table personne
+if (isset($_POST['envoie'])) {
+  $req_personne = "INSERT INTO personne (id_personne,nom, prenom, departement, email) VALUES
+   (NULL, '".$_POST['nom']."', '".$_POST['prenom']."', '".$_POST['departement']."', '".$_POST['email']."')";
+   if ($idcom->query($req_personne)) {
+     $id_personne = $idcom->lastInsertId();
+   }
+}
+
+
   // $id_sport = $_POST['designation'];
   // $niveau = $_POST['niveau'];
 if(isset($_POST['ajout'])){
